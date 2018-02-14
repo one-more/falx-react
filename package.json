@@ -1,0 +1,59 @@
+{
+  "name": "falx-react",
+  "version": "1.0.0",
+  "description": "falx HOC for react",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "jest --coverage",
+    "build": "webpack --mode production --display-modules",
+    "build:publish": "npm run flow && npm run test && npm run build && npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/one-more/falx-react.git"
+  },
+  "keywords": [
+    "react",
+    "falx"
+  ],
+  "author": "one-more",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/one-more/falx-react/issues"
+  },
+  "homepage": "https://github.com/one-more/falx-react#readme",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "falx": "^1.1.4",
+    "jest": "^22.3.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "webpack": "^4.0.0-beta.1",
+    "webpack-cli": "^2.0.4"
+  },
+  "peerDependencies": {
+    "falx": "^1.1.0",
+    "react": "^16.2.0"
+  },
+  "babel": {
+    "presets": [
+      "react",
+      "env"
+    ],
+    "plugins": [
+      "transform-object-rest-spread",
+      "transform-class-properties"
+    ]
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/setup/enzyme.js"
+  }
+}
