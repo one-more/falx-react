@@ -24,7 +24,11 @@ const reducer = {
     }
 };
 
-class Counter extends PureComponent {
+const COUNTER = 'counter';
+
+register(COUNTER, reducer);
+
+const Counter = subscribeHOC(COUNTER, class extends PureComponent {
     render() {
         return (
             <div>
@@ -36,13 +40,7 @@ class Counter extends PureComponent {
             </div>
         )
     }
-}
-
-const COUNTER = 'counter';
-
-register(COUNTER, reducer);
-
-const CounterWrapper = subscribeHOC(COUNTER, Counter);
+});
 
 const createPromise = () => new Promise(resolve => {
     setTimeout(resolve, 10)
@@ -50,13 +48,13 @@ const createPromise = () => new Promise(resolve => {
 
 describe('Counter', () => {
     test('initial render', () => {
-        const wrapper = mount(<CounterWrapper />);
+        const wrapper = mount(<Counter />);
         expect(+wrapper.find('#value').text()).toEqual(0);
         wrapper.unmount()
     });
 
     test('up', () => {
-        const wrapper = mount(<CounterWrapper />);
+        const wrapper = mount(<Counter />);
         wrapper.find('#up').simulate('click');
         return createPromise().then(() => {
             expect(+wrapper.find('#value').text()).toEqual(1);
@@ -69,11 +67,20 @@ describe('Counter', () => {
     });
 
     test('down', () => {
-        const wrapper = mount(<CounterWrapper />);
+        const wrapper = mount(<Counter />);
         wrapper.find('#down').simulate('click');
         return createPromise().then(() => {
             expect(+wrapper.find('#value').text()).toEqual(1);
             wrapper.unmount()
         })
     });
+
+    test('decorator', () => {
+        @subscribeHOC(COUNTER)
+        class Decorated extends PureComponent {
+            render() {
+                return null
+            }
+        }
+    })
 });

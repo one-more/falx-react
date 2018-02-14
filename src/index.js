@@ -2,6 +2,9 @@ import React, {PureComponent} from 'react'
 import {store, subscribe} from 'falx'
 
 export function subscribeHOC(name, Component) {
+    if (!Component) {
+        return component => subscribeHOC(name, component)
+    }
     return class extends PureComponent {
         state = store[name];
 
