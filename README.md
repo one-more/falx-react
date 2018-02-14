@@ -9,7 +9,7 @@ npm i -S falx-redux
 ## usage
 ````es6
 import React, {PureComponent} from 'react'
-import {subscribeHOC} from 'falx-redux'
+import {subscribeHOC} from 'falx-react'
 
 
 const reducer = {
