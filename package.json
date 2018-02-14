@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest --coverage",
     "build": "webpack --mode production --display-modules",
-    "build:publish": "npm run flow && npm run test && npm run build && npm publish"
+    "build:publish": "npm run test && npm run build && npm publish"
   },
   "repository": {
     "type": "git",
